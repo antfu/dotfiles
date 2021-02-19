@@ -25,7 +25,6 @@ export NVM_DIR="$HOME/.nvm"
 # -------------------------------- #
 
 alias code="code-insiders"
-alias i="ni"
 alias s="nr start"
 alias d="nr dev"
 alias b="nr build"
@@ -40,18 +39,6 @@ alias lint="nr lint"
 alias lintf="nr lint --fix"
 alias release="nr release"
 alias re="nr release"
-
-# -------------------------------- #
-# Functions
-# -------------------------------- #
-
-function projects() {
-  cd ~/code/$1
-}
-
-function issues() {
-  cd ~/code/issues/$1
-}
 
 # -------------------------------- #
 # Git
@@ -119,3 +106,34 @@ function gdc() {
   fi
 }
 
+# -------------------------------- #
+# Functions
+# -------------------------------- #
+
+function i() {
+  cd ~/i/$1
+}
+
+function ii() {
+  cd ~/i/_issues/$1
+}
+
+function dir() {
+  mkdir $1 && cd $1
+}
+
+function clone() {
+  hub clone "$1" && cd "$(basename "$1" .git)"
+}
+
+function clonei() {
+  i && clone "$1"
+}
+
+function cloneii() {
+  i && clone "$1"
+}
+
+function codei() {
+  i && code "$1" && cd -
+}
