@@ -86,6 +86,8 @@ alias gfrb='git fetch origin && git rebase origin/master'
 alias gxn='git clean -dn'
 alias gx='git clean -df'
 
+alias gsha='git rev-parse HEAD | pbcopy'
+
 function glp() {
   git --no-pager log -$1
 }
