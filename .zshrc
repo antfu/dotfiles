@@ -120,22 +120,42 @@ function ii() {
   cd ~/i/_issues/$1
 }
 
+function forks() {
+  cd ~/i/_forks/$1
+}
+
 function dir() {
   mkdir $1 && cd $1
 }
 
 function clone() {
-  hub clone "$1" && cd "$(basename "$1" .git)"
+  if [[ -z $2 ]] then
+    hub clone "$@" && cd "$(basename "$1" .git)"
+  else
+    hub clone "$@" && cd "$2"
+  fi
 }
 
 function clonei() {
-  i && clone "$1"
+  i && clone "$@" && code . && cd ~2
 }
 
 function cloneii() {
-  i && clone "$1"
+  ii && clone "$@" && code . && cd ~2
+}
+
+function clonef() {
+  forks && clone "$@" && code . && cd ~2
 }
 
 function codei() {
-  i && code "$1" && cd -
+  i && code "$@" && cd -
+}
+
+function serve() {
+  if [[ -z $1 ]] then
+    live-server dist
+  else
+    live-server $1
+  fi
 }
